@@ -83,8 +83,9 @@ class Loader
         global $wpdb;
 
         $table = $wpdb->posts;
-        $query = "SELECT ID FROM $table WHERE guid LIKE '%%%s'";
-        $post_id = $wpdb->get_var($wpdb->prepare($query, $this->request));
+        $query = $wpdb->prepare("SELECT ID FROM $table
+            WHERE guid LIKE '%%%s'", $this->request);
+        $post_id = $wpdb->get_var($query);
 
         // If there is no post ID for the requested file and so the file is not
         // an attachment, check whether it is a resized version of an existing
@@ -92,10 +93,10 @@ class Loader
         if (is_null($post_id)) {
             $name = basename($this->request);
             $table = $wpdb->postmeta;
-            $query = "SELECT post_id FROM $table
+            $query = $wpdb->prepare("SELECT post_id FROM $table
                 WHERE meta_key = '_wp_attachment_metadata'
-                AND meta_value LIKE '%%%s%%'";
-            $post_id = $wpdb->get_var($wpdb->prepare($query, $name));
+                AND meta_value LIKE '%%%s%%'", $name);
+            $post_id = $wpdb->get_var($query);
         }
 
         $this->attachment = get_post($post_id);
