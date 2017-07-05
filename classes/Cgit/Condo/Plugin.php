@@ -44,10 +44,11 @@ class Plugin
 
         $this->rewriter = new Rewriter($this->name);
         $this->customFieldMaker = new CustomFieldMaker($this->name);
-        $this->loader = new Loader($this->name);
 
         register_activation_hook($plugin, [$this, 'activate']);
         register_deactivation_hook($plugin, [$this, 'deactivate']);
+
+        add_action('init', [$this, 'init']);
     }
 
     /**
@@ -68,5 +69,15 @@ class Plugin
     public function deactivate()
     {
         $this->rewriter->disable();
+    }
+
+    /**
+     * Initialization
+     *
+     * @return void
+     */
+    public function init()
+    {
+        $this->loader = new Loader($this->name);
     }
 }

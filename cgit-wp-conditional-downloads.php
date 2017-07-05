@@ -5,7 +5,7 @@
 Plugin Name: Castlegate IT WP Conditional Downloads
 Plugin URI: https://github.com/castlegateit/cgit-wp-conditional-downloads
 Description: Add conditions to protect file downloads
-Version: 1.0
+Version: 1.0.1
 Author: Castlegate IT
 Author URI: https://www.castlegateit.co.uk/
 License: MIT
