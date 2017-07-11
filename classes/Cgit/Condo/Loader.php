@@ -133,8 +133,13 @@ class Loader
      */
     private function nope()
     {
-        wp_die('You do not have permission to view this file.',
-            'Access denied', ['response' => 403]);
+        $prefix = 'cgit_condo_forbidden_';
+        $title = apply_filters($prefix . 'title', 'Access denied');
+        $message = apply_filters($prefix . 'message',
+            'You do not have permission to view this file.');
+        $code = apply_filters($prefix . 'code', 403);
+
+        wp_die($message, $title, ['response' => $code]);
     }
 
     /**
