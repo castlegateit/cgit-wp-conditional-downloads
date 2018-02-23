@@ -117,6 +117,7 @@ class Loader
         header('Content-Disposition: inline; filename=' . $name);
         header('Content-Type: ' . $type);
         header('Content-Length: ' . $size);
+        header('Cache-Control: private');
 
         $file = fopen($path, 'r');
 
