@@ -8,7 +8,7 @@ Description: Add conditions to protect file downloads
 Version: 1.0.4
 Author: Castlegate IT
 Author URI: https://www.castlegateit.co.uk/
-License: MIT
+License: AGPL
 
 */
 
